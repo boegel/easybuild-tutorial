@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.2">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.6e35a1a6.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
       
       
     
@@ -266,45 +266,12 @@
     Using Docker
   </a>
   
-    <nav class="md-nav" aria-label="Using Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-and-cgroups-v2" class="md-nav__link">
-    Docker and cgroups v2
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
   <a href="#using-singularity" class="md-nav__link">
     Using Singularity
   </a>
-  
-    <nav class="md-nav" aria-label="Using Singularity">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#singularity-cache" class="md-nav__link">
-    Singularity cache
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#warning-messages" class="md-nav__link">
-    Warning messages
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -448,8 +415,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../community/" title="The EasyBuild Community" class="md-nav__link">
-      The EasyBuild Community
+    <a href="../community/" title="The EasyBuild community" class="md-nav__link">
+      The EasyBuild community
     </a>
   </li>
 
@@ -556,45 +523,12 @@
     Using Docker
   </a>
   
-    <nav class="md-nav" aria-label="Using Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-and-cgroups-v2" class="md-nav__link">
-    Docker and cgroups v2
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
   <a href="#using-singularity" class="md-nav__link">
     Using Singularity
   </a>
-  
-    <nav class="md-nav" aria-label="Using Singularity">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#singularity-cache" class="md-nav__link">
-    Singularity cache
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#warning-messages" class="md-nav__link">
-    Warning messages
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -664,19 +598,50 @@ EasyBuild, which will come in useful for some of the exercises.</p>
 <p><em>(only relevant if you are</em> <strong><em>not</em></strong> <em>using AWS Cloud9)</em></p>
 <ul>
 <li>having Docker or Singularity installed</li>
-<li>a system with a processor supporting the AVX2 instruction set. AVX2 is supported by Intel Haswell or AMD Bulldozer (both released in 2012) and onwards.</li>
+<li>a system with a processor supporting the <a href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions">AVX instruction set</a>. AVX is supported by Intel Sandy Bridge or AMD Bulldozer (both released in 2011) and onwards.</li>
 </ul>
-<p>If you are in doubt about your systems compatibility, see "Testing host compatibility" at the end of this document.</p>
+<p>If you are in doubt about your systems compatibility, see <a href="#testing-host-compatibility">Testing host compatibility</a> at the end of this document.</p>
 <h4 id="container-size">Container size<a class="headerlink" href="#container-size" title="Permanent link">&para;</a></h4>
 <p>The compressed container image is about 1.25GB in size,
 and will be downloaded automatically from Docker Hub when you run the <code>docker</code> or <code>singularity</code> command shown below.</p>
 <h4 id="using-docker">Using Docker<a class="headerlink" href="#using-docker" title="Permanent link">&para;</a></h4>
 <p>If you want to use the prepared container image via Docker,
 run the following <code>docker</code> command:</p>
-<div class="highlight"><pre><span></span><code>docker run -ti --hostname tutorial --rm easybuilders/tutorial:isc20-haswell
+<div class="highlight"><pre><span></span><code>docker run -ti --hostname tutorial --rm easybuilders/tutorial:isc20
 </code></pre></div>
 
-<h5 id="docker-and-cgroups-v2">Docker and cgroups v2<a class="headerlink" href="#docker-and-cgroups-v2" title="Permanent link">&para;</a></h5>
+<p><strong><em>Output</em></strong></p>
+<p>When running the "<code>docker run</code>" command shown above, you should see output like is shown below
+showing that the different layers are being downloaded.</p>
+<p><strong>Take into account that it will take a while for the container image to be downloaded.</strong></p>
+<div class="highlight"><pre><span></span><code>Unable to find image &#39;easybuilders/tutorial:isc20&#39; locally
+isc20: Pulling from easybuilders/tutorial
+9b4ebb48de8d: Pull complete
+f1933cd5add8: Downloading  73.48MB/125.9MB
+7bd84e6bca4a: Download complete 
+0a4ea0f4d48f: Download complete 
+503478215221: Download complete 
+c92d5dd0b39f: Download complete 
+f968b6fd8043: Download complete 
+5bf43b832c15: Download complete 
+0545f7354a51: Downloading  30.56MB/534.8MB
+d1a244ce82da: Waiting 
+c14d5fe9b1e6: Waiting 
+b93ec9ec5f20: Waiting
+239fd4ac6c1a: Waiting 
+9f7279164d6c: Waiting 
+8ee47766d1ab: Waiting
+</code></pre></div>
+
+<p>followed by:</p>
+<div class="highlight"><pre><span></span><code>...
+8ee47766d1ab: Pull complete 
+Digest: sha256:25edb356623dde212b256ef23ae17d2b1dc68921094a9c752eac460c78ba9b4c
+Status: Downloaded newer image for easybuilders/tutorial:isc20
+</code></pre></div>
+
+<p>After this, you should see the <a href="#welcome-message">welcome message</a>.</p>
+<p><strong><em>Docker and cgroups v2</em></strong></p>
 <p>If you are using a recent Linux distribution that has switched to cgroups v2
  (e.g. <a href="https://www.redhat.com/sysadmin/fedora-31-control-group-v2">Fedora &gt;= 31</a>), docker will fail with</p>
 <div class="highlight"><pre><span></span><code>OCI runtime create failed: this version of runc doesn&#39;t work on cgroups v2
@@ -693,7 +658,7 @@ run the following <code>docker</code> command:</p>
 <p>To use the prepared container image via Singularity,
 run the following <code>singularity</code> command:</p>
 <div class="highlight"><pre><span></span><code>mkdir -p /tmp/<span class="nv">$USER</span>/isc20
-singularity run --cleanenv --home /tmp/<span class="nv">$USER</span>/isc20 docker://easybuilders/tutorial:isc20-haswell
+singularity run --cleanenv --home /tmp/<span class="nv">$USER</span>/isc20 docker://easybuilders/tutorial:isc20
 </code></pre></div>
 
 <p>The additional options are required to:</p>
@@ -703,7 +668,36 @@ singularity run --cleanenv --home /tmp/<span class="nv">$USER</span>/isc20 docke
 </ul>
 <p>This is mainly to avoid that anything from the host environment or your home directory "leaks" into
 the container, which could interfere with the hands-on exercises.</p>
-<h5 id="singularity-cache">Singularity cache<a class="headerlink" href="#singularity-cache" title="Permanent link">&para;</a></h5>
+<p><strong><em>Output</em></strong></p>
+<p>When running the "<code>singularity run</code>" command shown above, you should see output like is shown below.</p>
+<p><strong>Take into account that it will take a while for the container image to be downloaded.</strong></p>
+<div class="highlight"><pre><span></span><code>INFO:    Converting OCI blobs to SIF format
+INFO:    Starting build...
+Getting image source signatures
+Copying blob 9b4ebb48de8d done
+Copying blob f1933cd5add8 done
+Copying blob 7bd84e6bca4a done
+Copying blob 0a4ea0f4d48f done
+Copying blob 503478215221 done
+Copying blob c92d5dd0b39f done
+Copying blob f968b6fd8043 done
+Copying blob 5bf43b832c15 done
+Copying blob 0545f7354a51 done
+Copying blob d1a244ce82da done
+Copying blob c14d5fe9b1e6 done
+Copying blob b93ec9ec5f20 done
+Copying blob 239fd4ac6c1a done
+Copying blob 9f7279164d6c done
+Copying blob 8ee47766d1ab done
+Copying config 717b13fece done
+Writing manifest to image destination
+Storing signatures
+...
+INFO:    Creating SIF file...
+</code></pre></div>
+
+<p>After this, you should see the <a href="#welcome-message">welcome message</a>.</p>
+<p><strong><em>Singularity cache</em></strong></p>
 <p>By default Singularity keeps its cache at <code>$HOME/.singularity/cache</code>.
 Since the uncompressed container image requires about 2.2GB of disk space,
 make sure this will work in your setup.</p>
@@ -713,7 +707,7 @@ to make Singulartiy use a different location:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SINGULARITY_CACHEDIR</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>/singularity
 </code></pre></div>
 
-<h5 id="warning-messages">Warning messages<a class="headerlink" href="#warning-messages" title="Permanent link">&para;</a></h5>
+<p><strong><em>Warning messages</em></strong></p>
 <p>When running the Docker container with Singularity, you may see a bunch of warning messages like
 this pass by:</p>
 <div class="highlight"><pre><span></span><code>warn rootless{path/to/file} ignoring (usually) harmless EPERM on setxattr &quot;user.rootlesscontainers&quot;
@@ -750,8 +744,8 @@ channel in the EasyBuild Slack, join via https://easybuild-slack.herokuapp.com .
 
 <h4 id="testing-host-compatibility">Testing host compatibility<a class="headerlink" href="#testing-host-compatibility" title="Permanent link">&para;</a></h4>
 <p>To leverage the pre-installed software stack that is included in the container image,
-the processor in your system must be compatible with binaries that use AVX2 instructions
-(Intel Haswell generation, or newer).</p>
+the processor in your system must be compatible with binaries that use AVX instructions
+(Intel Sandy Bridge generation, or newer).</p>
 <p>You can test the compatibility of your host with the following commands:</p>
 <div class="highlight"><pre><span></span><code>module use /easybuild/modules/all
 module load Python
@@ -761,6 +755,8 @@ python -V
 <p>If the last command prints a Python version (like <code>Python 3.8.2</code>), then your host is compatible.</p>
 <p>If you see a message like "<code>Illegal instruction (core dumped)</code>", the processor in your system is <em>not</em> compatible
 with the pre-installed software stack, and you will have to use another system to participate in the tutorial.</p>
+<p>After running this test, you should reset your environment by running "<code>module purge</code>", since most of the
+exercises assume you are starting from a clean environment.</p>
                 
                   
                     
@@ -769,7 +765,7 @@ with the pre-installed software stack, and you will have to use another system t
 <div class="md-source-date">
   <small>
     
-      Last update: June 18, 2020
+      Last update: June 20, 2020
     
   </small>
 </div>
@@ -841,15 +837,6 @@ with the pre-installed software stack, and you will have to use another system t
         
         
       
-      <a href="https://github.com/easybuilders" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 16"><path fill-rule="evenodd" d="M18.53 12.03h-.02c.009 0 .015.01.024.011h.006l-.01-.01zm.004.011c-.093.001-.327.05-.574.05-.78 0-1.05-.36-1.05-.83V8.13h1.59c.09 0 .16-.08.16-.19v-1.7c0-.09-.08-.17-.16-.17h-1.59V3.96c0-.08-.05-.13-.14-.13h-2.16c-.09 0-.14.05-.14.13v2.17s-1.09.27-1.16.28c-.08.02-.13.09-.13.17v1.36c0 .11.08.19.17.19h1.11v3.28c0 2.44 1.7 2.69 2.86 2.69.53 0 1.17-.17 1.27-.22.06-.02.09-.09.09-.16v-1.5a.177.177 0 00-.146-.18zM42.23 9.84c0-1.81-.73-2.05-1.5-1.97-.6.04-1.08.34-1.08.34v3.52s.49.34 1.22.36c1.03.03 1.36-.34 1.36-2.25zm2.43-.16c0 3.43-1.11 4.41-3.05 4.41-1.64 0-2.52-.83-2.52-.83s-.04.46-.09.52c-.03.06-.08.08-.14.08h-1.48c-.1 0-.19-.08-.19-.17l.02-11.11c0-.09.08-.17.17-.17h2.13c.09 0 .17.08.17.17v3.77s.82-.53 2.02-.53l-.01-.02c1.2 0 2.97.45 2.97 3.88zm-8.72-3.61h-2.1c-.11 0-.17.08-.17.19v5.44s-.55.39-1.3.39-.97-.34-.97-1.09V6.25c0-.09-.08-.17-.17-.17h-2.14c-.09 0-.17.08-.17.17v5.11c0 2.2 1.23 2.75 2.92 2.75 1.39 0 2.52-.77 2.52-.77s.05.39.08.45c.02.05.09.09.16.09h1.34c.11 0 .17-.08.17-.17l.02-7.47c0-.09-.08-.17-.19-.17zm-23.7-.01h-2.13c-.09 0-.17.09-.17.2v7.34c0 .2.13.27.3.27h1.92c.2 0 .25-.09.25-.27V6.23c0-.09-.08-.17-.17-.17zm-1.05-3.38c-.77 0-1.38.61-1.38 1.38 0 .77.61 1.38 1.38 1.38.75 0 1.36-.61 1.36-1.38 0-.77-.61-1.38-1.36-1.38zm16.49-.25h-2.11c-.09 0-.17.08-.17.17v4.09h-3.31V2.6c0-.09-.08-.17-.17-.17h-2.13c-.09 0-.17.08-.17.17v11.11c0 .09.09.17.17.17h2.13c.09 0 .17-.08.17-.17V8.96h3.31l-.02 4.75c0 .09.08.17.17.17h2.13c.09 0 .17-.08.17-.17V2.6c0-.09-.08-.17-.17-.17zM8.81 7.35v5.74c0 .04-.01.11-.06.13 0 0-1.25.89-3.31.89-2.49 0-5.44-.78-5.44-5.92S2.58 1.99 5.1 2c2.18 0 3.06.49 3.2.58.04.05.06.09.06.14L7.94 4.5c0 .09-.09.2-.2.17-.36-.11-.9-.33-2.17-.33-1.47 0-3.05.42-3.05 3.73s1.5 3.7 2.58 3.7c.92 0 1.25-.11 1.25-.11v-2.3H4.88c-.11 0-.19-.08-.19-.17V7.35c0-.09.08-.17.19-.17h3.74c.11 0 .19.08.19.17z"/></svg>
-      </a>
-    
-      
-      
-        
-        
-      
       <a href="https://twitter.com/easy_build" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
       </a>
@@ -881,14 +868,14 @@ with the pre-installed software stack, and you will have to use another system t
     </div>
     
       <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../assets/javascripts/bundle.a14cc5fd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/bundle.7f4f3c92.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: ["instant"],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.7a2ea5ba.min.js"
+            worker: "../assets/javascripts/worker/search.9b3611bd.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
